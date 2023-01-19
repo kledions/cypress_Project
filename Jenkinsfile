@@ -5,14 +5,6 @@ pipeline{
             args'-p 3000:3000'
         }
     }
-    stages {
-    stage('Building') {
-        steps {
-            sh 'npm install'
-            }
-        }
-    }
-}
 
     parameters{
         string(name: 'SPEC', defaultValue: "cypress/e2e/**/**", description: "Enter the scripts path that you want to execute")
@@ -20,6 +12,11 @@ pipeline{
     }
 
     stages{
+        stage('Building'){
+            steps {
+            echo "Building the application"
+            }
+        }
 
         stage('Testing'){
             steps{
