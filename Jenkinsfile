@@ -1,5 +1,18 @@
 pipeline{
-    agent any
+    agent {
+        docker {
+            image 'node:lts-bullsey-slim'
+            args'-p 3000:3000'
+        }
+    }
+    stages {
+    stage('Building') {
+        steps {
+            sh 'npm install'
+            }
+        }
+    }
+}
 
     parameters{
         string(name: 'SPEC', defaultValue: "cypress/e2e/**/**", description: "Enter the scripts path that you want to execute")
@@ -7,15 +20,9 @@ pipeline{
     }
 
     stages{
-        stage('Building'){
-            steps {
-            echo "Building the application"
-            }
-        }
 
         stage('Testing'){
             steps{
-                sh 'node main.js'
                 sh "npm i"
                 sh "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
             }
