@@ -13,10 +13,12 @@ pipeline{
             }
         }
 
-        stage('Testing'){
-            steps{
-                sh "npm i"
-                sh "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
+        stage('Run E2E tests') {
+            dir("cypress-e2e-tests") {
+                lock("cypress/e2e/integrations-${env.NODE_NAME}") {
+                    sh "npm i"
+                    sh "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
+                }
             }
         }
 
