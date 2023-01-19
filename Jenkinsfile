@@ -13,12 +13,12 @@ pipeline{
             steps {
             echo "Building the application"
             sh "npm install"
+            sh "npm install cypress"
             }
         }
 
         stage('Testing'){
             steps{
-                sh "node test"
                 sh "npm i"
                 sh "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
             }
