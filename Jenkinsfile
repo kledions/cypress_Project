@@ -15,6 +15,7 @@ pipeline{
 
         stage('Testing'){
             steps{
+                sh 'node main.js'
                 sh "npm i"
                 sh "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
             }
