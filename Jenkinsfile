@@ -7,17 +7,6 @@ pipeline{
     }
 
     stages{
-      stage('NPM Installs') {
-      agent {
-        docker {
-            image 'circleci/node:latest'
-        }
-      }
-      environment { HOME="." }
-        }
-      }
-    
-
         stage('Building'){
             steps {
             echo "Building the application"
@@ -42,3 +31,4 @@ pipeline{
             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'cypress/reports/html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
         }
     }
+}
