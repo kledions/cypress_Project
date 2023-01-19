@@ -13,7 +13,7 @@ pipeline{
             steps {
             echo "Building the application"
             sh "npm install"
-            sh "npm install cypress"
+            sh "<<Build Command>>"
             }
         }
 
