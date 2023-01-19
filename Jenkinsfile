@@ -1,10 +1,5 @@
 pipeline{
-    agent {
-        docker {
-            image 'node:lts-bullsey-slim'
-            args'-p 3000:3000'
-        }
-    }
+    agent any
 
     parameters{
         string(name: 'SPEC', defaultValue: "cypress/e2e/**/**", description: "Enter the scripts path that you want to execute")
@@ -12,6 +7,17 @@ pipeline{
     }
 
     stages{
+      stage('NPM Installs') {
+      agent {
+        docker {
+            image 'circleci/node:latest'
+        }
+      }
+      environment { HOME="." }
+        }
+      }
+    
+
         stage('Building'){
             steps {
             echo "Building the application"
