@@ -13,7 +13,7 @@ pipeline{
             steps {
             echo "Building the application"
             sh "npm install"
-            sh "<<Build Command>>"
+            sh "npm install cypress"
             }
         }
 
@@ -32,7 +32,7 @@ pipeline{
     }
     post{
         always{
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'cypress/reports/html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'cypress/reports/html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
         }
     }
 }
