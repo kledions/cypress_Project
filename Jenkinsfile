@@ -13,7 +13,6 @@ pipeline{
             steps {
             echo "Building the application"
             sh "npm install"
-            sh "<<Build Command>>"
             }
         }
 
