@@ -1,6 +1,6 @@
 pipeline{
     agent {
-        dockerfile true
+        docker { image 'cypress/included:12.3.0' }
     }
 
     parameters{
