@@ -19,7 +19,7 @@ pipeline{
 
         stage('Testing'){
             steps{
-                sh "npm install --unsafe-perm=true"
+                sh "npm install"
                 sh "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
             }
         }
