@@ -2,7 +2,6 @@ pipeline{
     agent {
         docker { 
             image 'cypress/included:12.3.0' 
-            dockerfile true
             }
     }
 
@@ -20,7 +19,7 @@ pipeline{
 
         stage('Testing'){
             steps{
-                sh "npm i"
+                sh "npm install --unsafe-perm=true --allow-root --verbose"
                 sh "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
             }
         }
