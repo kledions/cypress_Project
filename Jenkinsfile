@@ -1,7 +1,7 @@
 pipeline{
-    agent any
-
-    tools {nodejs "node"}
+    agent {
+        dockerfile true
+    }
 
     parameters{
         string(name: 'SPEC', defaultValue: "cypress/e2e/test1.spec.js", description: "Enter the scripts path that you want to execute")
